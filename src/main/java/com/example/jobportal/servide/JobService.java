@@ -35,4 +35,16 @@ public class JobService {
     public void deleteJobById(Long id) {
         repository.deleteById(id);
     }
+    public Job updateJob(Long id, Job updatedJob) {
+        Job existing = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Job not found with id " + id));
+
+        existing.setTitle(updatedJob.getTitle());
+        existing.setCompany(updatedJob.getCompany());
+        existing.setLocation(updatedJob.getLocation());
+        existing.setSalary(updatedJob.getSalary());
+
+        return repository.save(existing);
+    }
+
 }
