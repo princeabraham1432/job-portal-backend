@@ -15,16 +15,24 @@ public class JobService {
         this.repository = repository;
     }
 
+    // CREATE
     public Job createJob(Job job) {
         return repository.save(job);
     }
 
+    // READ ALL
     public List<Job> getAllJobs() {
         return repository.findAll();
     }
 
+    // READ BY ID
     public Job getJobById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Job not found with id " + id));
+    }
+
+    // DELETE
+    public void deleteJobById(Long id) {
+        repository.deleteById(id);
     }
 }

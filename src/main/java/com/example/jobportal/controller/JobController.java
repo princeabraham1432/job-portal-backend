@@ -16,21 +16,27 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    // GET ALL
+    // CREATE
+    @PostMapping
+    public Job createJob(@RequestBody Job job) {
+        return jobService.createJob(job);
+    }
+
+    // READ ALL
     @GetMapping
     public List<Job> getAllJobs() {
         return jobService.getAllJobs();
     }
 
-    // ✅ GET BY ID (THIS WAS MISSING / WRONG)
+    // READ BY ID
     @GetMapping("/{id}")
     public Job getJobById(@PathVariable Long id) {
         return jobService.getJobById(id);
     }
 
-    // POST
-    @PostMapping
-    public Job createJob(@RequestBody Job job) {
-        return jobService.createJob(job);
+    // DELETE BY ID
+    @DeleteMapping("/{id}")
+    public void deleteJobById(@PathVariable Long id) {
+        jobService.deleteJobById(id);
     }
 }
